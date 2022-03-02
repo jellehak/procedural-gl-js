@@ -85,7 +85,7 @@ var EffectComposer = function ( renderer, renderTarget, hd ) {
 
 Object.assign( EffectComposer.prototype, {
 
-	swapBuffers () {
+	swapBuffers() {
 
 		var tmp = this.readBuffer;
 		this.readBuffer = this.writeBuffer;
@@ -93,7 +93,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	addPass ( pass ) {
+	addPass( pass ) {
     if ( pass.hd && !this.hd ) {
       console.error( 'Cannot add HD pass to a non-HD EffectComposer' );
     }
@@ -104,13 +104,13 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	insertPass ( pass, index ) {
+	insertPass( pass, index ) {
 
 		this.passes.splice( index, 0, pass );
 
 	},
 
-	isLastEnabledPass ( passIndex ) {
+	isLastEnabledPass( passIndex ) {
 
 		for ( var i = passIndex + 1; i < this.passes.length; i ++ ) {
 
@@ -126,7 +126,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	render ( deltaTime ) {
+	render( deltaTime ) {
 
 		// deltaTime value is in seconds
 
@@ -182,7 +182,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	reset ( renderTarget ) {
+	reset( renderTarget ) {
 
 		if ( renderTarget === undefined ) {
 
@@ -202,7 +202,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	setSize ( width, height, hdWidth, hdHeight ) {
+	setSize( width, height, hdWidth, hdHeight ) {
 
 		this.renderTarget1.setSize( width, height );
 		this.renderTarget2.setSize( width, height );
@@ -241,9 +241,9 @@ var Pass = function () {
 
 Object.assign( Pass.prototype, {
 
-	setSize ( /* width, height */ ) {},
+	setSize( /* width, height */ ) {},
 
-	render ( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
+	render( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
 
 		console.error( 'THREE.Pass: .render() must be implemented in derived pass.' );
 
@@ -265,13 +265,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.defineProperty( FullScreenQuad.prototype, 'material', {
 
-		get () {
+		get() {
 
 			return this._mesh.material;
 
 		},
 
-		set ( value ) {
+		set( value ) {
 
 			this._mesh.material = value;
 
@@ -281,13 +281,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.assign( FullScreenQuad.prototype, {
 
-		dispose () {
+		dispose() {
 
 			this._mesh.geometry.dispose();
 
 		},
 
-		render ( renderer ) {
+		render( renderer ) {
 
 			renderer.render( this._mesh, camera );
 

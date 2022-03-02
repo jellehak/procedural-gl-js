@@ -25,7 +25,7 @@ import UserInputStore from '/stores/userInput';
 var container = ContainerStore.getState().element;
 var app = {
   mouse: { x: 0, y: 0 },
-  init () {
+  init() {
     var raycastMouse = function () {
       // Convert to raycasting coordinate space
       var vector = ContainerStore.toClipSpace( app.mouse );

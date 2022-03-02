@@ -17,7 +17,7 @@ var fogUniforms = {
   uFogDropoff: { type: 'f', value: 0.0006 },
   uFogIntensity: { type: 'f', value: 0.1 },
   uFogColor: { type: 'c', value: new THREE.Color() },
-  update ( state ) {
+  update( state ) {
     forceUpdate = !state;
     state = state || CameraStore.getState();
 

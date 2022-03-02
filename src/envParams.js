@@ -60,7 +60,7 @@ envParams.set = function ( params, duration ) {
       duration: duration,
       doNotCancel: true,
       lerp: StoreUtils.lerp.params,
-      onComplete () {
+      onComplete() {
         RenderActions.needsRender( { env: true } );
       }
     } );

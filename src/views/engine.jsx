@@ -12,7 +12,7 @@ import renderer from '/renderer';
 import RenderActions from '/actions/render';
 var container = ContainerStore.getState().element;
 var Engine = React.createClass( {
-  componentDidMount () {
+  componentDidMount() {
     var domNode = this.base || this.getDOMNode();
     domNode.appendChild( container );
     container.appendChild( renderer.domElement );
@@ -20,15 +20,15 @@ var Engine = React.createClass( {
     ErrorStore.listen( this.onError );
     this.setState( this.getInitialState() );
   },
-  getInitialState () {
+  getInitialState() {
     return { error: ErrorStore.getState().message }
   },
-  onError ( state ) {
+  onError( state ) {
     if ( state.displayErrors ) {
       this.setState( { error: state.message } );
     }
   },
-  render () {
+  render() {
     var style = {
       width: '100%',
       height: '100%',

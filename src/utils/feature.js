@@ -8,36 +8,36 @@
 import log from '/log';
 var FeatureUtils = {
   // TODO perhaps better to inline these, as we're parsing a lot of data???
-  isLineString ( feature ) {
+  isLineString( feature ) {
     return feature.geometry.type === 'LineString';
   },
-  isPolygon ( feature ) {
+  isPolygon( feature ) {
     return feature.geometry.type === 'Polygon';
   },
-  isMultiPolygon ( feature ) {
+  isMultiPolygon( feature ) {
     return feature.geometry.type === 'MultiPolygon';
   },
-  isPoint ( feature ) {
+  isPoint( feature ) {
     return feature.geometry.type === 'Point';
   },
-  tagValue ( feature, tag ) {
+  tagValue( feature, tag ) {
     if ( !feature.properties.tags ) { return null }
 
     return feature.properties.tags[ tag ];
   },
-  hasTag ( feature, tag ) {
+  hasTag( feature, tag ) {
     return !!FeatureUtils.tagValue( feature, tag );
   },
-  isPiste ( feature ) {
+  isPiste( feature ) {
     return FeatureUtils.isLineString( feature ) && FeatureUtils.hasTag( feature, 'piste:type' );
   },
-  isAerial ( feature ) {
+  isAerial( feature ) {
     return FeatureUtils.isLineString( feature ) && FeatureUtils.hasTag( feature, 'aerialway' );
   },
-  isHighway ( feature ) {
+  isHighway( feature ) {
     return FeatureUtils.isLineString( feature ) && FeatureUtils.hasTag( feature, 'highway' );
   },
-  isTrack ( feature ) {
+  isTrack( feature ) {
     if ( !FeatureUtils.isLineString( feature ) ) { return false }
 
     var highway = FeatureUtils.tagValue( feature, 'highway' );
@@ -47,17 +47,17 @@ var FeatureUtils = {
                highway === 'cycleway' ||
                highway === 'bridleway' );
   },
-  isRiver ( feature ) {
+  isRiver( feature ) {
     return FeatureUtils.isLineString( feature ) && FeatureUtils.hasTag( feature, 'waterway' );
   },
-  isBuilding ( feature ) {
+  isBuilding( feature ) {
     return FeatureUtils.isPolygon( feature ) && FeatureUtils.hasTag( feature, 'building' );
   },
-  isForest ( feature ) {
+  isForest( feature ) {
     return ( FeatureUtils.isPolygon( feature ) || FeatureUtils.isMultiPolygon( feature ) ) &&
         !FeatureUtils.isBuilding( feature );
   },
-  color ( feature ) {
+  color( feature ) {
     var difficulty = !!feature.properties.tags && feature.properties.tags[ 'piste:difficulty' ];
     if ( difficulty ) {
       if ( difficulty === 'advanced' || difficulty === 'expert' || difficulty === 'freeride' ) { return '#030512' }
@@ -87,7 +87,7 @@ var FeatureUtils = {
 
     log( 'Unknown feature color', feature );
   },
-  thickness ( feature ) {
+  thickness( feature ) {
     if ( feature.properties.thickness ) { return feature.properties.thickness }
 
     if ( FeatureUtils.isPiste( feature ) ) { return 2.7 }

@@ -8,10 +8,10 @@
 var spacing = 0.05;
 
 var ApiUtils = {
-  snap ( n ) {
+  snap( n ) {
     return Math.round( n / spacing ) * spacing;
   },
-  datafileForLocation ( lon, lat ) {
+  datafileForLocation( lon, lat ) {
     lon = ApiUtils.snap( lon );
     lat = ApiUtils.snap( lat );
 

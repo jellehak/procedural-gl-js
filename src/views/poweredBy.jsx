@@ -8,7 +8,7 @@
 import React from 'react';
 import logo from '/logo.svg';
 var PoweredBy = React.createClass( {
-  render () {
+  render() {
     var containerStyle = {
       position : 'absolute',
       padding : '11px 8px',

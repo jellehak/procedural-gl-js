@@ -34,17 +34,17 @@ var south = {
 };
 var direction = new THREE.Vector3();
 var Compass = React.createClass( {
-  getInitialState () {
+  getInitialState() {
     return {
       azimuth: 0,
       visible: UserInterfaceStore.getState().compassVisible
     };
   },
-  componentDidMount () {
+  componentDidMount() {
     CameraStore.listen( this.onStoreChange );
     UserInterfaceStore.listen( bindToVisible( 'compassVisible' ).bind( this ) );
   },
-  onStoreChange ( storeState ) {
+  onStoreChange( storeState ) {
     direction.subVectors( storeState.position, storeState.target );
     var azimuth = 0.5 * Math.PI + Math.atan2( direction.y, direction.x );
 
@@ -52,11 +52,11 @@ var Compass = React.createClass( {
     azimuth = 0.01 * Math.round( azimuth * 100 );
     this.setState( { azimuth: azimuth } );
   },
-  shouldComponentUpdate ( nextProps, nextState ) {
+  shouldComponentUpdate( nextProps, nextState ) {
     return this.state.azimuth !== nextState.azimuth ||
            this.state.visible !== nextState.visible;
   },
-  render () {
+  render() {
     if ( this.state.visible === false ) { return null; }
     style.transform = 'rotate(' + this.state.azimuth + 'rad) translateZ(0)';
     return (

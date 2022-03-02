@@ -38,7 +38,7 @@ var v0, v1, t2, t3, A, B;
 var catmullGenerator = {
   position: 0,
   tangent: 0,
-  generate ( p0, p1, p2, p3, t, createTangent ) {
+  generate( p0, p1, p2, p3, t, createTangent ) {
     v0 = ( p2 - p0 ) * 0.5;
     v1 = ( p3 - p1 ) * 0.5;
     t2 = t * t;

@@ -13,7 +13,7 @@ var tonemapUniforms = {
   // Calculate the white scale from the white point
   uTonemapExposureBias: { type: 'f', value: 1 },
   uTonemapWhiteScale: { type: 'f', value: 1 },
-  update () {
+  update() {
     tonemapUniforms.uTonemapExposureBias.value =
       tonemapUniforms.exposureBias.value;
     tonemapUniforms.uTonemapWhiteScale.value =

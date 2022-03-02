@@ -21,7 +21,7 @@ var skyBox = {
   enabled: true,
   renderTarget: null,
   scene: new THREE.Scene(),
-  init () {
+  init() {
     var parameters = {
       format: THREE.RGBFormat,
       type: ( webgl.render565 ? THREE.UnsignedShort565Type :
@@ -60,7 +60,7 @@ var skyBox = {
       if ( state.env ) { skyBox.process() }
     } );
   },
-  process () {
+  process() {
     renderer.setRenderTarget( skyBox.renderTarget );
     renderer.render( skyBox.scene, skyBox.camera );
   }

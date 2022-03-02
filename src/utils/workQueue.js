@@ -31,9 +31,9 @@ var WorkQueue = {
 
   // Params
   // queue: list of items to process
-  // process to invoke on each item in `queue`
-  // onComplete called when processing complete
-  createTask ( queue, process, onComplete, highPriority ) {
+  // processto invoke on each item in `queue`
+  // onCompletecalled when processing complete
+  createTask( queue, process, onComplete, highPriority ) {
     if ( queue.length === 0 ) {
       defer( onComplete );
       return;

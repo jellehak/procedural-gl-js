@@ -78,7 +78,7 @@ track.onload = function () {
 
 var webgl = {
   supported: ( gl !== null ),
-  supports ( extension ) {
+  supports( extension ) {
     return extensions.indexOf( extension ) !== -1;
   },
   extensions: extensions,

@@ -49,7 +49,7 @@ Object.assign( Color.prototype, {
 
   r: 1, g: 1, b: 1, a: 1,
 
-  set ( value ) {
+  set( value ) {
     if ( value && value.isColor ) {
       this.copy( value );
     } else if ( typeof value === 'number' ) {
@@ -61,7 +61,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  setScalar ( scalar ) {
+  setScalar( scalar ) {
     this.r = scalar;
     this.g = scalar;
     this.b = scalar;
@@ -69,7 +69,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  setHex ( hex ) {
+  setHex( hex ) {
     hex = Math.floor( hex );
 
     this.r = ( hex >> 16 & 255 ) / 255;
@@ -79,7 +79,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  setRGB ( r, g, b, a ) {
+  setRGB( r, g, b, a ) {
     this.r = r;
     this.g = g;
     this.b = b;
@@ -89,7 +89,7 @@ Object.assign( Color.prototype, {
   },
 
 
-  setStyle ( style ) {
+  setStyle( style ) {
     function handleAlpha( string ) {
       if ( string === undefined ) return 1;
       return parseFloat( string );
@@ -172,11 +172,11 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  clone () {
+  clone() {
     return new this.constructor( this.r, this.g, this.b, this.a );
   },
 
-  copy ( color ) {
+  copy( color ) {
     this.r = color.r;
     this.g = color.g;
     this.b = color.b;
@@ -185,7 +185,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  copyGammaToLinear ( color, gammaFactor ) {
+  copyGammaToLinear( color, gammaFactor ) {
     if ( gammaFactor === undefined ) gammaFactor = 2.0;
 
     this.r = Math.pow( color.r, gammaFactor );
@@ -195,7 +195,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  copyLinearToGamma ( color, gammaFactor ) {
+  copyLinearToGamma( color, gammaFactor ) {
     if ( gammaFactor === undefined ) gammaFactor = 2.0;
 
     var safeInverse = ( gammaFactor > 0 ) ? ( 1.0 / gammaFactor ) : 1.0;
@@ -207,7 +207,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  convertGammaToLinear () {
+  convertGammaToLinear() {
     var r = this.r, g = this.g, b = this.b;
 
     this.r = r * r;
@@ -217,7 +217,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  convertLinearToGamma () {
+  convertLinearToGamma() {
     this.r = Math.sqrt( this.r );
     this.g = Math.sqrt( this.g );
     this.b = Math.sqrt( this.b );
@@ -225,15 +225,15 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  getHex () {
+  getHex() {
     return ( this.r * 255 ) << 16 ^ ( this.g * 255 ) << 8 ^ ( this.b * 255 ) << 0;
   },
 
-  getHexString () {
+  getHexString() {
     return ( '000000' + this.getHex().toString( 16 ) ).slice( -6 );
   },
 
-  getHSL ( optionalTarget ) {
+  getHSL( optionalTarget ) {
     // h,s,l ranges are in 0.0 - 1.0
 
     var hsl = optionalTarget || { h: 0, s: 0, l: 0 };
@@ -270,11 +270,11 @@ Object.assign( Color.prototype, {
     return hsl;
   },
 
-  getStyle () {
+  getStyle() {
     return 'rgb(' + ( ( this.r * 255 ) | 0 ) + ',' + ( ( this.g * 255 ) | 0 ) + ',' + ( ( this.b * 255 ) | 0 ) + ')';
   },
 
-  offsetHSL ( h, s, l ) {
+  offsetHSL( h, s, l ) {
     var hsl = this.getHSL();
 
     hsl.h += h; hsl.s += s; hsl.l += l;
@@ -284,7 +284,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  add ( color ) {
+  add( color ) {
     this.r += color.r;
     this.g += color.g;
     this.b += color.b;
@@ -292,7 +292,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  addColors ( color1, color2 ) {
+  addColors( color1, color2 ) {
     this.r = color1.r + color2.r;
     this.g = color1.g + color2.g;
     this.b = color1.b + color2.b;
@@ -300,7 +300,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  addScalar ( s ) {
+  addScalar( s ) {
     this.r += s;
     this.g += s;
     this.b += s;
@@ -308,7 +308,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  sub ( color ) {
+  sub( color ) {
     this.r = Math.max( 0, this.r - color.r );
     this.g = Math.max( 0, this.g - color.g );
     this.b = Math.max( 0, this.b - color.b );
@@ -316,7 +316,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  multiply ( color ) {
+  multiply( color ) {
     this.r *= color.r;
     this.g *= color.g;
     this.b *= color.b;
@@ -324,7 +324,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  multiplyScalar ( s ) {
+  multiplyScalar( s ) {
     this.r *= s;
     this.g *= s;
     this.b *= s;
@@ -332,7 +332,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  lerp ( color, alpha ) {
+  lerp( color, alpha ) {
     this.r += ( color.r - this.r ) * alpha;
     this.g += ( color.g - this.g ) * alpha;
     this.b += ( color.b - this.b ) * alpha;
@@ -341,11 +341,11 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  equals ( c ) {
+  equals( c ) {
     return ( c.r === this.r ) && ( c.g === this.g ) && ( c.b === this.b );
   },
 
-  fromArray ( array, offset ) {
+  fromArray( array, offset ) {
     if ( offset === undefined ) offset = 0;
 
     this.r = array[ offset ];
@@ -355,7 +355,7 @@ Object.assign( Color.prototype, {
     return this;
   },
 
-  toArray ( array, offset ) {
+  toArray( array, offset ) {
     if ( array === undefined ) array = [];
     if ( offset === undefined ) offset = 0;
 
@@ -366,7 +366,7 @@ Object.assign( Color.prototype, {
     return array;
   },
 
-  toJSON () {
+  toJSON() {
     return this.getHex();
   }
 
