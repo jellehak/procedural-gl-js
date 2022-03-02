@@ -17,8 +17,11 @@ import UserInterfaceExport from '/export/userInterface';
 
 // Entry point into app
 import '/views/root.jsx';
+
+import pack from '../package.json';
+
 /*global __buildVersion__*/
-console.log( 'Procedural v' + __buildVersion__ );
+console.log( 'Procedural v' + pack.version );
 
 // Re-export public API
 const Procedural = {
