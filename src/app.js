@@ -10,45 +10,43 @@ import ContainerStore from '/stores/container';
 import '/stores/engine';
 import '/gui';
 import '/envParams';
-
-// Scene objects
 import '/currentLocation';
 import '/lines';
 import '/markers';
 import '/sky';
 import '/skyBox';
 import '/terrain';
-
 import picker from '/picker';
 import UserActions from '/actions/user';
 import UserInputStore from '/stores/userInput';
+
+var raycastMouse = function () {
+  // Convert to raycasting coordinate space
+  var vector = ContainerStore.toClipSpace( app.mouse );
+
+  var zoomArea = 0.2;
+  var shouldZoom = Math.abs( vector.x ) < zoomArea && Math.abs( vector.y ) < zoomArea;
+  // If more or less tapping on where we are, interpret as zoom
+  if ( shouldZoom ) {
+    UserActions.doubleTapZoom();
+    return;
+  }
+
+  // ...otherwise as pan
+  var p = picker.raycastTerrain( app.mouse );
+  if ( Math.abs( p.x ) < 7500 && Math.abs( p.y ) < 7500 ) {
+    UserActions.focusOnTarget( p );
+  }
+};
+
+var raycastFeature = function () {
+  return picker.pickFeature( app.mouse );
+};
+
 var container = ContainerStore.getState().element;
 var app = {
   mouse: { x: 0, y: 0 },
   init() {
-    var raycastMouse = function () {
-      // Convert to raycasting coordinate space
-      var vector = ContainerStore.toClipSpace( app.mouse );
-
-      var zoomArea = 0.2;
-      var shouldZoom = Math.abs( vector.x ) < zoomArea && Math.abs( vector.y ) < zoomArea;
-      // If more or less tapping on where we are, interpret as zoom
-      if ( shouldZoom ) {
-        UserActions.doubleTapZoom();
-        return;
-      }
-
-      // ...otherwise as pan
-      var p = picker.raycastTerrain( app.mouse );
-      if ( Math.abs( p.x ) < 7500 && Math.abs( p.y ) < 7500 ) {
-        UserActions.focusOnTarget( p );
-      }
-    };
-
-    var raycastFeature = function () {
-      return picker.pickFeature( app.mouse );
-    };
-
     // Mouse input
     var lastFeature = null;
     var updateMouse = function ( e ) {
