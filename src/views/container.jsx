@@ -9,7 +9,7 @@ import React from 'react';
 // So we can inline the styles wrapping the engine, use this simple
 // component, to wrap other parts of app
 var Container = React.createClass( {
-  render: function () {
+  render () {
     var outerStyle = {
       position: 'relative',
       height: '100%',

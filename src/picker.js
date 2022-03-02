@@ -31,7 +31,7 @@ var id, store, s, sl, feature, f, fl;
 var picker = {
   mouse: { x: 0, y: 0 },
   raycastPosition: new THREE.Vector3(),
-  init: function () {
+  init () {
     // Create materials for picking and raycasting and create scenes
     var pickerMaterial = new THREE.RawShaderMaterial( {
       name: 'picker',
@@ -79,7 +79,7 @@ var picker = {
   tagId: 1,
   featureIdtoTagId: new Map(),
   // Tags all features in a store to enable GPU picking
-  registerStore: function ( store ) {
+  registerStore ( store ) {
     if ( picker.stores.indexOf( store ) === -1 ) {
       picker.stores.push( store );
     }
@@ -104,7 +104,7 @@ var picker = {
       }
     } );
   },
-  pickFeature: function ( mouse ) {
+  pickFeature ( mouse ) {
     picker.mouse.x = mouse.x;
     picker.mouse.y = mouse.y;
     if ( mouse.clipspace ) {
@@ -174,7 +174,7 @@ var picker = {
 
     return null;
   },
-  raycastTerrain: function ( mouse ) {
+  raycastTerrain ( mouse ) {
     picker.mouse.x = mouse.x;
     picker.mouse.y = mouse.y;
     if ( mouse.clipspace ) {

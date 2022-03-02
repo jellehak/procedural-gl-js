@@ -9,7 +9,7 @@ import React from 'react';
 import Button from '/views/button.jsx';
 import UserActions from '/actions/user';
 var ButtonRow = React.createClass( {
-  render: function () {
+  render () {
     var buttons = this.props.buttons.map( function ( b ) {
       return <Button action={b.action} icon={b.icon} text={b.text}/>
     } );

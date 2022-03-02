@@ -52,7 +52,7 @@ SavePass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
 	constructor: SavePass,
 
-	render: function ( renderer, writeBuffer, readBuffer ) {
+	render ( renderer, writeBuffer, readBuffer ) {
 
 		if ( this.uniforms[ this.textureID ] ) {
 

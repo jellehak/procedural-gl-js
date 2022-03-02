@@ -33,7 +33,7 @@ var skyUniforms = {
   tonemapScale: { type: 'f', value: 0 },
 
   // Calculate derived uniforms
-  update: function () {
+  update () {
     // Sun direction (using different coordinate system, so convert)
     // TODO unify on single coordinate system
     var sunPosition = skyUniforms.sunPosition.value;

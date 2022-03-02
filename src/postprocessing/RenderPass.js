@@ -27,7 +27,7 @@ RenderPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
 	constructor: RenderPass,
 
-	render: function ( renderer, writeBuffer, readBuffer /*, deltaTime, maskActive */ ) {
+	render ( renderer, writeBuffer, readBuffer /*, deltaTime, maskActive */ ) {
 
 		var oldAutoClear = renderer.autoClear;
 		renderer.autoClear = false;

@@ -22,7 +22,7 @@ import UserActions from '/actions/user';
 
 // Root React component
 var App = React.createClass( {
-  render: function () {
+  render () {
     return (
       <Container>
         <Engine/>

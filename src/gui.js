@@ -11,7 +11,7 @@ import RenderActions from '/actions/render';
 var out = {
   gui: null,
   onChange: null,
-  initEnv: function () {
+  initEnv () {
     if ( out.envGui ) { return }
 
     var guiChanged = function () {

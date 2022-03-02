@@ -73,7 +73,7 @@ ShaderPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
 	constructor: ShaderPass,
 
-	render: function ( renderer, writeBuffer, readBuffer /*, deltaTime, maskActive */ ) {
+	render ( renderer, writeBuffer, readBuffer /*, deltaTime, maskActive */ ) {
 
 		if ( this.uniforms[ this.textureID ] ) {
 
@@ -99,7 +99,7 @@ ShaderPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
 	},
 
-  compile: function ( renderer ) {
+  compile ( renderer ) {
     var tmpScene = new THREE.Scene();
     var obj = new THREE.Object3D();
     obj.material = this.material;

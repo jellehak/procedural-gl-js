@@ -85,7 +85,7 @@ var EffectComposer = function ( renderer, renderTarget, hd ) {
 
 Object.assign( EffectComposer.prototype, {
 
-	swapBuffers: function () {
+	swapBuffers () {
 
 		var tmp = this.readBuffer;
 		this.readBuffer = this.writeBuffer;
@@ -93,7 +93,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	addPass: function ( pass ) {
+	addPass ( pass ) {
     if ( pass.hd && !this.hd ) {
       console.error( 'Cannot add HD pass to a non-HD EffectComposer' );
     }
@@ -104,13 +104,13 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	insertPass: function ( pass, index ) {
+	insertPass ( pass, index ) {
 
 		this.passes.splice( index, 0, pass );
 
 	},
 
-	isLastEnabledPass: function ( passIndex ) {
+	isLastEnabledPass ( passIndex ) {
 
 		for ( var i = passIndex + 1; i < this.passes.length; i ++ ) {
 
@@ -126,7 +126,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	render: function ( deltaTime ) {
+	render ( deltaTime ) {
 
 		// deltaTime value is in seconds
 
@@ -182,7 +182,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	reset: function ( renderTarget ) {
+	reset ( renderTarget ) {
 
 		if ( renderTarget === undefined ) {
 
@@ -202,7 +202,7 @@ Object.assign( EffectComposer.prototype, {
 
 	},
 
-	setSize: function ( width, height, hdWidth, hdHeight ) {
+	setSize ( width, height, hdWidth, hdHeight ) {
 
 		this.renderTarget1.setSize( width, height );
 		this.renderTarget2.setSize( width, height );
@@ -241,9 +241,9 @@ var Pass = function () {
 
 Object.assign( Pass.prototype, {
 
-	setSize: function ( /* width, height */ ) {},
+	setSize ( /* width, height */ ) {},
 
-	render: function ( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
+	render ( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
 
 		console.error( 'THREE.Pass: .render() must be implemented in derived pass.' );
 
@@ -265,13 +265,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.defineProperty( FullScreenQuad.prototype, 'material', {
 
-		get: function () {
+		get () {
 
 			return this._mesh.material;
 
 		},
 
-		set: function ( value ) {
+		set ( value ) {
 
 			this._mesh.material = value;
 
@@ -281,13 +281,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.assign( FullScreenQuad.prototype, {
 
-		dispose: function () {
+		dispose () {
 
 			this._mesh.geometry.dispose();
 
 		},
 
-		render: function ( renderer ) {
+		render ( renderer ) {
 
 			renderer.render( this._mesh, camera );
 

@@ -17,8 +17,10 @@
         <div style="position: absolute; width: 100%; height: 100%;" id="container">
         </div>
     </body>
-    <script type="text/javascript" src="../build/procedural-gl.js"></script>
-    <script type="text/javascript">
+    <script type="module">
+        // import "../build/procedural-gl.js"
+        import Procedural from "../build/procedural-gl.module.js"
+
         // Initialize the engine with a location and inject into page
         const container = document.getElementById( 'container' );
 

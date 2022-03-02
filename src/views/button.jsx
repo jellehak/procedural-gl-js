@@ -27,10 +27,10 @@ var hoverStyle = {
 };
 
 var Button = React.createClass( {
-  getInitialState: function () { return { hover: false }; },
-  mouseOver: function () { this.setState( { hover: true } ); },
-  mouseOut: function () { this.setState( { hover: false } ); },
-  render: function () {
+  getInitialState () { return { hover: false }; },
+  mouseOver () { this.setState( { hover: true } ); },
+  mouseOut () { this.setState( { hover: false } ); },
+  render () {
     var style = Object.assign( {},
       defaultStyle, 
       this.state.hover ? hoverStyle : undefined,

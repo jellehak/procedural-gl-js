@@ -12,7 +12,7 @@ let track;
 
 if ( __dev__ ) {
   track = {
-    raw: function () {
+    raw () {
       // Parse out object for display
       // At the moment we do not collect analytics, but keeping
       // format in case we want to change in future
@@ -34,7 +34,7 @@ if ( __dev__ ) {
       } );
       log.apply( window, args );
     },
-    event: function ( category, action, label, value ) {
+    event ( category, action, label, value ) {
       var obj = {};
       if ( category ) { obj.eventCategory = category }
 
@@ -46,7 +46,7 @@ if ( __dev__ ) {
 
       track.raw( 'send', 'event', obj );
     },
-    timing: function ( category, variable, label, value ) {
+    timing ( category, variable, label, value ) {
       var obj = {};
       if ( category ) { obj.timingCategory = category }
 
@@ -59,7 +59,7 @@ if ( __dev__ ) {
       track.raw( 'send', 'timing', obj );
     },
     onload: null,
-    now: function () { return timeSource.now() }
+    now () { return timeSource.now() }
   };
   setTimeout( function () {
     if ( track.onload ) { track.onload() }

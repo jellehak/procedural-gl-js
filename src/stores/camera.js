@@ -318,7 +318,7 @@ CameraStore.prototype.zoomIn = function () {
     duration: bounce ? 0.15 : 0.5,
     ease: StoreUtils.cubicIn,
     doNotCancel: true,
-    onComplete: function () {
+    onComplete () {
       // Bounce back if outside of range
       if ( bounce ) {
         delta.setLength( self.minDistance );
@@ -345,7 +345,7 @@ CameraStore.prototype.zoomOut = function () {
     duration: bounce ? 0.15 : 0.5,
     ease: StoreUtils.cubicIn,
     doNotCancel: true,
-    onComplete: function () {
+    onComplete () {
       // Bounce back if outside of range
       if ( bounce ) {
         delta.setLength( self.maxDistance );
@@ -489,11 +489,11 @@ CameraStore.prototype.animateAlongFeature = function ( options ) {
         duration: feature.curve.getLength() / chaseSpeed, // in m/s
         ease: StoreUtils.linear,
         // Convert u value into position on curve
-        lerp: function ( initial, final, u ) {
+        lerp ( initial, final, u ) {
           return feature.curve.getPointAt( u );
         },
         onCancel: onComplete,
-        onComplete: function () {
+        onComplete () {
           if ( f < features.length - 1 ) {
             // Move onto next feature
             animateAlongFeatureWithIndex( f + 1 );

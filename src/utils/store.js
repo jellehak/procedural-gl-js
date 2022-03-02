@@ -13,7 +13,7 @@ var StoreUtils = {
   // Transitions between an initial and final value, firing the `action` with the
   // intermediate value
   cancelStack: [], // Track transitions to enable cancelling them (UserInputStore.listen below)
-  transition: function ( action, initial, final, options ) {
+  transition ( action, initial, final, options ) {
     if ( typeof initial !== typeof final ) {
       log( 'Error: types do not match for transition:', typeof initial, '!==', typeof final );
       return;
@@ -82,27 +82,27 @@ var StoreUtils = {
     AnimationStore.listen( transition.step );
   },
   // Easing functions
-  cubicOut: function ( u ) { return Math.pow( u, 3 ) },
-  cubicIn: function ( u ) { return 1 - Math.pow( 1 - u, 3 ) },
-  linear: function ( u ) { return u },
-  smootherstep: function ( u ) { return THREE.Math.smootherstep( u, 0, 1 ) },
+  cubicOut ( u ) { return Math.pow( u, 3 ) },
+  cubicIn ( u ) { return 1 - Math.pow( 1 - u, 3 ) },
+  linear ( u ) { return u },
+  smootherstep ( u ) { return THREE.Math.smootherstep( u, 0, 1 ) },
   // Lerp functions
   lerp: {
-    scalar: function ( initial, final, u ) {
+    scalar ( initial, final, u ) {
       if ( isNaN( initial ) ) { return final }
 
       return initial + u * ( final - initial );
     },
-    array: function ( initial, final, u ) {
+    array ( initial, final, u ) {
       return initial.map( function ( i, n ) {
         return StoreUtils.lerp.scalar( i, final[ n ], u );
       } );
     },
-    vector3: function ( initial, final, u ) {
+    vector3 ( initial, final, u ) {
       return initial.clone().lerp( final, u );
     },
     // Quadratic jump on top of standard transition
-    vector3Hop: function ( height ) {
+    vector3Hop ( height ) {
       return function ( initial, final, u ) {
         var v = StoreUtils.lerp.vector3( initial, final, u );
         v.z += height * ( 1 - Math.pow( 2 * u - 1, 2 ) );
@@ -110,7 +110,7 @@ var StoreUtils = {
       };
     },
     // Transition while keeping set distance from center
-    vector3AngularHop: function ( center, height ) {
+    vector3AngularHop ( center, height ) {
       var v1 = new THREE.Vector3();
       var v2 = new THREE.Vector3();
       var axis = new THREE.Vector3( 0, 0, 1 );
@@ -138,12 +138,12 @@ var StoreUtils = {
         return v1;
       };
     },
-    vector3Angular: function ( center ) {
+    vector3Angular ( center ) {
       return StoreUtils.lerp.vector3AngularHop( center, 0 );
     },
     // For interpolating parameter objects for environment
     // and geography
-    params: function ( initial, final, u ) {
+    params ( initial, final, u ) {
       var out = {};
       for ( var p in final ) {
         if ( final.hasOwnProperty( p ) ) {
