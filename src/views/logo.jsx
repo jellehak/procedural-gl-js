@@ -8,7 +8,7 @@
 import React from 'react';
 import logoStyle from '/views/logoStyle.css';
 var Logo = React.createClass( {
-  render: function () {
+  render () {
     var style = {};
     if ( this.props.color ) {
       style.background = this.props.color;

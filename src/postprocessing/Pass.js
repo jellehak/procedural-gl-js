@@ -22,9 +22,9 @@ function Pass() {
 
 Object.assign( Pass.prototype, {
 
-	setSize: function ( /* width, height */ ) {},
+	setSize ( /* width, height */ ) {},
 
-	render: function ( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
+	render ( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
 
 		console.error( 'THREE.Pass: .render() must be implemented in derived pass.' );
 
@@ -48,13 +48,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.defineProperty( FullScreenQuad.prototype, 'material', {
 
-		get: function () {
+		get () {
 
 			return this._mesh.material;
 
 		},
 
-		set: function ( value ) {
+		set ( value ) {
 
 			this._mesh.material = value;
 
@@ -64,13 +64,13 @@ Pass.FullScreenQuad = ( function () {
 
 	Object.assign( FullScreenQuad.prototype, {
 
-		dispose: function () {
+		dispose () {
 
 			this._mesh.geometry.dispose();
 
 		},
 
-		render: function ( renderer ) {
+		render ( renderer ) {
 
 			renderer.render( this._mesh, camera );
 

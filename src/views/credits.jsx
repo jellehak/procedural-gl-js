@@ -22,14 +22,14 @@ const pStyle = { color: 'white', fontSize : '6pt', margin: 0 };
 
 const Credits = React.createClass( {
   getInitialState: () => AppStore.getState().datasource,
-  componentDidMount: function () {
+  componentDidMount () {
     AppStore.listen( this.onStoreChange );
     this.onStoreChange( AppStore.getState() );
   },
-  onStoreChange: function ( { datasource } ) {
+  onStoreChange ( { datasource } ) {
     this.setState( datasource );
   },
-  render: function () {
+  render () {
     let credits = [];
     if ( this.state.elevation && this.state.elevation.attribution ) {
       credits.push( this.state.elevation.attribution );

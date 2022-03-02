@@ -15,7 +15,7 @@ var geoproject = {
   center3035: new THREE.Vector2( 0, 0 ), // Coordinate map is centered on (projected coordinates)
   projector: null,
 
-  calculateGlobalOffset: function ( lon, lat ) {
+  calculateGlobalOffset ( lon, lat ) {
     // TODO define `baseZ` in one place!!!
     const baseZ = 7;
     const [ x, y, z ] = tilebelt.pointToTileFraction( lon, lat, baseZ );
@@ -26,7 +26,7 @@ var geoproject = {
 
   // Calculate scale factor at zoom level 15
   // This will let us scale the terrain to match features in scene
-  calculateSceneScale: function ( lon, lat ) {
+  calculateSceneScale ( lon, lat ) {
     var tile15 = tilebelt.pointToTile( lon, lat, 15 );
     var bbox15 = tilebelt.tileToBBOX( tile15 );
     var size = geoproject.project( [ bbox15[ 2 ], bbox15[ 3 ] ] )
@@ -34,7 +34,7 @@ var geoproject = {
     return size.x;
   },
 
-  project: function ( lonlatH, absolute ) {
+  project ( lonlatH, absolute ) {
     if ( typeof lonlatH[ 0 ] !== 'number' ) {
       // Assume we have an array, iterate over it
       return lonlatH.map( function ( x ) {
@@ -51,7 +51,7 @@ var geoproject = {
 
     return new THREE.Vector3( projected[ 0 ], projected[ 1 ], lonlatH[ 2 ] ); // Pass through the height
   },
-  unproject: function ( v, absolute ) {
+  unproject ( v, absolute ) {
     if ( Array.isArray( v ) ) {
       return v.map( function ( x ) {
         return geoproject.unproject( x, absolute );
@@ -67,7 +67,7 @@ var geoproject = {
     var unprojected = geoproject.projector.inverse( projected );
     return [ unprojected[ 0 ], unprojected[ 1 ], v.z ]; // Pass through the height
   },
-  unproject3035: function ( v, absolute ) {
+  unproject3035 ( v, absolute ) {
     if ( Array.isArray( v[ 0 ] ) ) {
       return v.map( function ( x ) {
         return geoproject.unproject3035( x, absolute );
@@ -83,7 +83,7 @@ var geoproject = {
     var unprojected = geoproject.projector3035.inverse( projected );
     return [ unprojected[ 0 ], unprojected[ 1 ], v.z ]; // Pass through the height
   },
-  vectorize: function ( lonlatH ) {
+  vectorize ( lonlatH ) {
     if ( typeof lonlatH[ 0 ] !== 'number' ) {
       // Assume we have an array, iterate over it
       var result = new Array( lonlatH.length );
@@ -97,7 +97,7 @@ var geoproject = {
     return new THREE.Vector3( lonlatH[ 0 ], lonlatH[ 1 ], lonlatH[ 2 ] );
   },
   // Convert a JSON feature representation into arrays of THREE.Vectors
-  vectorizeFeature: function ( feature ) {
+  vectorizeFeature ( feature ) {
     if ( feature.projected ) {
       return geoproject.vectorize( feature.geometry.coordinates );
     } else {

@@ -15,13 +15,13 @@ var zoomButtons = [
 ];
 var camButtons = [
   { text : '2D',
-    action : function () {
+    action  () {
       UserActions.setCameraMode( '2D' );
       UserActions.setTerrainEffectContours();
     }
   },
   { text : '3D',
-    action : function () {
+    action  () {
       UserActions.setCameraMode( '3D' );
       UserActions.setTerrainEffectNone();
     }
@@ -33,22 +33,22 @@ var rotateButtons = [
 ];
 
 var EngineControlsTop = React.createClass( {
-  getInitialState: function () {
+  getInitialState () {
     return UserInterfaceStore.getState();
   },
-  componentDidMount: function () {
+  componentDidMount () {
     UserInterfaceStore.listen( this.onStoreChange );
     this.setState( this.getInitialState() );
   },
-  onStoreChange: function ( storeState ) {
+  onStoreChange ( storeState ) {
     this.setState( storeState );
   },
-  shouldComponentUpdate: function ( nextProps, nextState ) {
+  shouldComponentUpdate ( nextProps, nextState ) {
     return this.state.cameraModeControlVisible !== nextState.cameraModeControlVisible ||
            this.state.rotationControlVisible !== nextState.rotationControlVisible ||
            this.state.zoomControlVisible !== nextState.zoomControlVisible;
   },
-  render: function () {
+  render () {
     var buttons = [];
     if ( this.state.zoomControlVisible ) {
       buttons.push( <ButtonRow className='engine-controls-zoom' buttons={zoomButtons}/> );

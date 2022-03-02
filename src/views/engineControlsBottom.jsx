@@ -29,20 +29,20 @@ if ( 'geolocation' in navigator ) {
 }
 
 var EngineControlsBottom = React.createClass( {
-  getInitialState: function () {
+  getInitialState () {
     return UserInterfaceStore.getState();
   },
-  componentDidMount: function () {
+  componentDidMount () {
     UserInterfaceStore.listen( this.onStoreChange );
     this.setState( this.getInitialState() );
   },
-  onStoreChange: function ( storeState ) {
+  onStoreChange ( storeState ) {
     this.setState( storeState );
   },
-  shouldComponentUpdate: function ( nextProps, nextState ) {
+  shouldComponentUpdate ( nextProps, nextState ) {
     return this.state.userLocationControlVisible !== nextState.userLocationControlVisible;
   },
-  render: function () {
+  render () {
     var buttons = [];
     if ( this.state.userLocationControlVisible ) {
       buttons.push( <ButtonRow className='engine-controls-user-location' buttons={[userLocation]}/> );
