@@ -7,7 +7,7 @@
  */
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
-import shader from './src/rollup-plugin-shader';
+import shader from './rollup-plugin-shader';
 import { string } from 'rollup-plugin-string';
 import sucrase from '@rollup/plugin-sucrase';
 import replace from '@rollup/plugin-replace';
@@ -18,6 +18,7 @@ import pkg from "./package.json";
 
 const DEV = !!process.env.DEV;
 const SHADER_DIR = DEV ? 'shaders' : 'shaders/min';
+
 export default {
   input: 'src/index.js',
   output: DEV ? {
